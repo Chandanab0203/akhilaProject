@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Criminal Record Management System</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="http://localhost:9090/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="http://localhost:9090/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="http://localhost:9090/css/responsive.css" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="hero_bg_box">
+      <div class="img-box">
+        <img src="http://localhost:9090/images/crime1.jpg" alt="">
+      </div>
+    </div>
+
+    <header class="header_section">
+      <div class="header_top">
+        <div class="container-fluid">
+          <div class="contact_link-container">
+            <a href="" class="contact_link1">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>
+                California,USA
+              </span>
+            </a>
+            <a href="" class="contact_link2">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call : +01 6575258967
+              </span>
+            </a>
+            <a href="" class="contact_link3">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>
+                crimeManagement@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                Criminal Record Management Website
+              </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class=""></span>
+            </button>
+
+            <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+              <ul class="navbar-nav  ">
+                <li class="nav-item ">
+                  <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{/about}"> About</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" th:href="@{/service}"> Services </a>
+                </li>
+				<li class="nav-item" sec:authorize="isAuthenticated()">
+                  <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <!-- service section -->
+<form action "#" th:action="@{/addcriminal}" th:object="${criminal}" method="post">
+  <section class="service_section layout_padding ">
+    <div class="container">
+	<input type="hidden" th:field="*{fileNo}" />
+      <div class="row col-md-10">
+    <label for="staticEmail" class="form-label" style="color: white">First Name</label>   
+    <input type="text" class="form-control" name="firstName" placeholder="firstName" th:field="*{firstName}" required="true">
+    </div>
+    <div class="row col-md-10">
+    <label for="staticEmail" class="form-label" style="color: white">Last Name</label>   
+    <input type="text" class="form-control" name="lasttName" placeholder="lastName" th:field="*{lastName}">
+    </div>
+	<br>
+    <fieldset class="form-group">
+    <div class="row">
+      <legend class="col-form-label col-sm-2 pt-0" style="color: white">Gender</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="male" value="male" th:field="*{gender}" checked>
+          <label class="form-check-label" for="gridRadios1" style="color: white">
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="female" value="female" th:field="*{gender}">
+          <label class="form-check-label" for="gridRadios2" style="color: white">
+            Female
+          </label>
+        </div>
+		<div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="others" value="others" th:field="*{gender}">
+          <label class="form-check-label" for="gridRadios2" style="color: white">
+            Others
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+    <div class="row col-md-10">
+    <label for="staticEmail" class="form-label" style="color: white">Nationality</label>   
+    <input type="text" class="form-control" name="nationality" placeholder="nationality" th:field="*{nationality}">
+    </div>
+    <div class="row col-md-10">
+    <label for="staticEmail" class="form-label" style="color: white">Age</label>   
+    <input type="text" class="form-control" name="age" placeholder="age" th:field="*{age}">
+    </div>
+	<div class="row col-md-10">
+    <label for="inputPassword" class="col-form-label" style="color: white">Offense</label>
+    <input type="text" class="form-control" name="offense" placeholder="offense" th:field="*{offense}">
+	</div>
+    <div class="row col-md-10">
+    <label for="inputPassword" class="col-form-label" style="color: white">BailStatus</label>
+    <input type="text" class="form-control" name="bailStatus" placeholder="bailStatus" th:field="*{bailStatus}">
+	</div>
+    <div class="row col-md-10">
+    <label for="inputPassword" class="col-form-label" style="color: white">JailTerm</label>
+    <input type="text" class="form-control" name="jailTerm" placeholder="jailTerm" th:field="*{jailTerm}">
+    </div>
+	<br>
+	<br>
+	<center>
+	<div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+	</div>
+	<center>
+	</form>
+  </div>
+  </section>
+
+  <!-- end service section -->
+
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_info">
+            <h5>
+              Contact Us
+            </h5>
+          </div>
+          <div class="info_contact">
+            <a href="" class="">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>
+                California,USA
+              </span>
+            </a>
+            <a href="" class="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call : +01 6575258967
+              </span>
+            </a>
+            <a href="" class="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>
+                crimeManagement@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <p>
+      &copy; <span id="currentYear"></span> All Rights Reserved.
+    </p>
+  </footer>
+  <!-- footer section -->
+
+  <script src="http://localhost:9090/js/jquery-3.4.1.min.js"></script>
+  <script src="http://localhost:9090/js/bootstrap.js"></script>
+  <script src="http://localhost:9090/js/custom.js"></script>
+</body>
+
+</html>
